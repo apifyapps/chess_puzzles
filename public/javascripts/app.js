@@ -41,7 +41,7 @@ $(function(){
 
   function lost(){
     $('.result').removeClass('won').removeClass('lost').addClass('lost');
-    $('.result').html('Try again!!!')
+    $('.result').html('Try again! <a href="#" class="reset">Reset</a>')
   }
 
   function displayScore(){
@@ -64,6 +64,10 @@ $(function(){
 
   $('#random').click(function(){
     puzzleNum = getRandomNumber(maxPuzzleNum);
+    displayPuzzle();
+  });
+
+  $('.reset').live('click', function(){
     displayPuzzle();
   });
 
