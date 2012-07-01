@@ -1,0 +1,27 @@
+
+.app-content {
+  font-family: Helvetica, sans-serif;
+}
+.title{
+  padding: 10px;
+  font-size: 20px;
+}
+.caption{
+  margin-left: 20px;
+}
+.label_text {
+  font-size: 18px;
+}
+#from, #to {
+  min-height: 24px;
+}
+.route_table {
+  margin-left: 30px;
+  margin-top: 20px;
+}
+.route_table td,.route_table th {
+  padding: 3px;
+}
+.route_table .route-title{
+  min-width: 100px;
+}
