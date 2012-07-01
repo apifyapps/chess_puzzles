@@ -18,7 +18,8 @@
                 xLiteral : ['a','b','c','d','e','f','g','h'],
                 appendTo: document.body,
                 type: 'matrix',
-                position: null
+                position: null,
+                callback: function(move){console.log(move);}
             }, options);
             
             $piece = $('<img/>').attr({src: 'img/1x1.png', width: $settings.squareSize, height: $settings.squareSize}).addClass('draggablePiece');
@@ -140,6 +141,7 @@
             });  
             
             // Make pieces droppable.
+            var self = this;
             $boardInner.find('.square').droppable({
                 accept: '.draggablePiece',
                 tolerance: 'intersect',
@@ -147,7 +149,7 @@
                     //$( this ).addClass( "ui-state-highlight" );
                     $(this).find('.draggablePiece').css({display:'none'});
                     $(this).append(ui.draggable.css('position','static'));
-                    //console.log('drop');
+                    $settings.callback(self._findMove($(this)));
                 }                
             });
             
@@ -176,6 +178,21 @@
             return position;
         }
         
+        this._findMove = function(element){
+            var location = $(element).attr('id').replace('pos','');
+            var x = Number(location[0]);
+            var y = Number(location[1]);
+            var x2a = ['a','b','c','d','e','f','g','h']
+            var a = x2a[x-1];
+            var moved = $(element).find('img').attr('class').match(/\s(w|b)(.)\s/);
+            var color = moved[1];
+            var piece = moved[2];
+            if(color == 'w'){
+                piece = piece.toUpperCase();
+            }
+            var move = piece + a + y;
+            return move;
+        }
         // Private function that arranges the board by matrix.
         this._arrangeMatrixPosition = function(position){
             if(!position){
