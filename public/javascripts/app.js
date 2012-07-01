@@ -19,12 +19,8 @@ $(function(){
     return Math.floor(Math.random() * maxValue) + 1;
   }
 
-  $('#board').chess({
-    type: 'fen',
-    position: '4k3/R7/7R/8/8/8/8/4K3'
-  });
   displayPuzzle();
-  
+
   function displayPuzzle(){
     $('.puzzlenum').html(puzzleNum);
     $('.result').html('');
@@ -32,9 +28,31 @@ $(function(){
     $('#chessBoard').remove();
     $.fn.chess({
       type: 'fen',
-      position: puzzle.fen
+      position: puzzle.fen,
+      callback: function(move){
+        if(move == puzzle.solution){
+          won();
+        } else {
+          lost();
+        }
+      }
     });
     $('.instructions').html(puzzle.instructions);
+  }
+
+  function won(){
+    displayScore(score+=100);
+    $('.result').removeClass('won').removeClass('lost').addClass('won');
+    $('.result').html('You won!!!');
+  }
+
+  function lost(){
+    $('.result').removeClass('won').removeClass('lost').addClass('lost');
+    $('.result').html('Try again!!!')
+  }
+
+  function displayScore(){
+    $('.points').html(score);
   }
 
   $('#prev').click(function(){
