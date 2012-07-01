@@ -2,15 +2,38 @@
   .row
     .span8.title
       Chess Puzzles: Mate in One
-      %span.city
+      %span.caption
+        (Built with
+        %a{href: "https://github.com/serbanghita/jQuery-Chess"}
+          jQuery Chess
+        and
+        %a{href: "http://apify.heroku.com/resources", target: '_blank'}
+          APIfy
+        )
   .row
-    .span4.caption
-      Built with
-      %a{href: "https://github.com/serbanghita/jQuery-Chess"}
-        jQuery Chess
-      and
-      %a{href: "http://apify.heroku.com/resources", target: '_blank'}
-        APIfy.
+    .span1.number
+      \#
+      %span.puzzlenum
+        1
+    .span2.controls
+      %a.btn#prev
+        <
+      %a.btn#random
+        Random
+      %a.btn#next
+        >
+    .score.span2
+      Score:
+      %span.points
+        0
+      Points
   .row
     &nbsp;
+  .row
+    .instructions.span4
+      &nbsp;
+    .result.success
+      &nbsp;
+  .row
+    #board
   .row
