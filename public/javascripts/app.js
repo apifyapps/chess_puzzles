@@ -6,6 +6,8 @@ var puzzles = []
 $(function(){
   $.getJSON(puzzlesUrl, function(data){
     puzzles = JSON.parse(data);
+    //tempfix
+    _.each(puzzles, function(puzzle){puzzle.solution = puzzle.solution.replace('x','');})
     maxPuzzleNum = puzzles.length;
     displayPuzzle();
   });
