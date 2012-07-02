@@ -25,7 +25,7 @@ $(function(){
       type: 'fen',
       position: puzzle.fen,
       callback: function(move){
-        if(move == puzzle.solution){
+        if(move.toLowerCase() == puzzle.solution.toLowerCase()){
           won();
         } else {
           lost();
